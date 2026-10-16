@@ -1,0 +1,294 @@
+/**
+ * SEÇÃO DE PERGUNTAS FREQUENTES (FAQ)
+ * Dra. Mariana Lopes — Psicóloga Clínica
+ *
+ * Réplica fiel do mockup de referência:
+ * - Fundo creme claro (#FAF8F2) integrado ao design system existente.
+ * - Container com margens laterais alinhadas ao restante do site (~8.7% / 9%).
+ * - Composição em duas colunas no desktop:
+ *     - Coluna Esquerda (~35%): Rótulo em verde-escuro (#123E32) e Título H2 serifado em Cormorant Garamond (#091A38).
+ *     - Coluna Direita (~65%): Lista sanfonada (accordion) de perguntas com linhas divisórias horizontais sutis (#E7E2D9).
+ * - Indicadores minimalistas em "+" que se transformam suavemente em "−" ao expandir.
+ * - Respostas em Inter (#34465B) com entrelinha confortável.
+ * - Acessibilidade WCAG AA completa: WAI-ARIA (aria-expanded, aria-controls, role="region"), navegação por teclado e foco visível.
+ * - Responsividade fluida para Desktop, Tablet e Mobile.
+ */
+
+/* ==========================================================================
+   1. Estrutura Geral da Seção FAQ
+   ========================================================================== */
+.faq {
+  background-color: var(--color-background);
+  padding: 3.75rem 0 4.5rem 0;
+  position: relative;
+  width: 100%;
+}
+
+.faq__container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-desktop);
+}
+
+/* Layout em Duas Colunas (Desktop) */
+.faq__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.65fr;
+  align-items: start;
+  gap: 2.75rem;
+}
+
+/* ==========================================================================
+   2. Coluna Esquerda: Cabeçalho da Seção (Rótulo + Título)
+   ========================================================================== */
+.faq__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Rótulo Introdutório */
+.faq__eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-green);
+  margin: 0 0 0.65rem 0;
+  line-height: 1.3;
+}
+
+/* Título Principal (H2) em Cormorant Garamond */
+.faq__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 2.2vw, 1.95rem);
+  font-weight: 500;
+  line-height: 1.22;
+  color: var(--color-navy);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+/* ==========================================================================
+   3. Coluna Direita: Acordeão de Perguntas e Respostas
+   ========================================================================== */
+.faq__accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Item Individual da FAQ */
+.faq__item {
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color var(--transition-fast);
+}
+
+/* Botão de Disparo da Pergunta (Trigger) */
+.faq__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1rem 0;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--color-navy);
+  transition: color var(--transition-fast);
+}
+
+.faq__trigger:hover {
+  color: var(--color-green);
+}
+
+.faq__trigger:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Texto da Pergunta */
+.faq__question-text {
+  font-family: var(--font-body);
+  font-size: 0.885rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: inherit;
+}
+
+/* Ícone de Expansão (+ / −) */
+.faq__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: #5A738E;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.faq__trigger:hover .faq__icon {
+  color: var(--color-green);
+}
+
+.faq__icon-svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  transition: transform var(--transition-normal);
+}
+
+/* Linha vertical do "+" que desaparece ao abrir (virando "−") */
+.faq__icon-line-v {
+  transform-origin: center;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.faq__trigger[aria-expanded="true"] .faq__icon-line-v {
+  opacity: 0;
+  transform: scaleY(0);
+}
+
+.faq__trigger[aria-expanded="true"] .faq__icon {
+  color: var(--color-green);
+}
+
+/* Painel de Resposta */
+.faq__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--transition-normal);
+}
+
+.faq__panel[aria-hidden="false"],
+.faq__panel:not([hidden]) {
+  grid-template-rows: 1fr;
+}
+
+.faq__panel-inner {
+  overflow: hidden;
+}
+
+.faq__answer-text {
+  font-family: var(--font-body);
+  font-size: 0.835rem;
+  font-weight: 400;
+  line-height: 1.68;
+  color: var(--color-text);
+  margin: 0;
+  padding: 0 0 1.15rem 0;
+  max-width: 600px;
+}
+
+/* ==========================================================================
+   4. Responsividade e Adaptação a Telas
+   ========================================================================== */
+
+/* Telas Tablet e Desktop Compacto (768px a 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .faq {
+    padding: 3.25rem 0;
+  }
+
+  .faq__container {
+    padding: 0 var(--container-padding-tablet);
+  }
+
+  .faq__layout {
+    grid-template-columns: 1fr 1.6fr;
+    gap: 2rem;
+  }
+
+  .faq__trigger {
+    padding: 0.95rem 0;
+  }
+
+  .faq__question-text {
+    font-size: 0.865rem;
+  }
+
+  .faq__answer-text {
+    font-size: 0.825rem;
+  }
+}
+
+/* Telas Tablet Estreitas (768px a 860px) */
+@media (max-width: 860px) and (min-width: 768px) {
+  .faq__layout {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .faq__header {
+    margin-bottom: 0.25rem;
+  }
+}
+
+/* Telas Móveis / Mobile (Abaixo de 768px) */
+@media (max-width: 767px) {
+  .faq {
+    padding: 2.75rem 0 3.25rem 0;
+  }
+
+  .faq__container {
+    padding: 0 var(--container-padding-mobile);
+  }
+
+  /* Empilhamento vertical natural */
+  .faq__layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .faq__eyebrow {
+    font-size: 0.685rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .faq__title {
+    font-size: clamp(1.45rem, 5.8vw, 1.7rem);
+    line-height: 1.25;
+  }
+
+  .faq__trigger {
+    padding: 0.95rem 0;
+    gap: 1rem;
+  }
+
+  .faq__question-text {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .faq__answer-text {
+    font-size: 0.825rem;
+    line-height: 1.6;
+    padding-bottom: 1rem;
+  }
+}
+
+/* Telas Muito Estreitas (360px a 390px) */
+@media (max-width: 390px) {
+  .faq__container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .faq__trigger {
+    padding: 0.85rem 0;
+  }
+
+  .faq__question-text {
+    font-size: 0.845rem;
+  }
+}
+

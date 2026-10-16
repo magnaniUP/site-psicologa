@@ -46,6 +46,20 @@ const SITE_CONFIG = {
   },
 
   /**
+   * SEÇÃO DE DEPOIMENTOS — ETAPA 06
+   *
+   * AVISO ÉTICO CFP (Resolução CFP nº 010/2005, Art. 20):
+   * O Código de Ética Profissional do Psicólogo no Brasil veda o uso de depoimentos
+   * de pacientes para promoção comercial de serviços ou garantia de resultados.
+   * Os conteúdos atuais são ESTRITAMENTE de demonstração visual do mockup para desenvolvimento.
+   */
+  testimonials: {
+    isProvisionalDemonstration: true,
+    title: "Um espaço de escuta e acolhimento", // Conforme mockup visual (ou "O que dizem sobre o processo")
+    showDotsNavigation: true
+  },
+
+  /**
    * Retorna a URL completa para o WhatsApp de acordo com as diretrizes oficiais
    */
   getWhatsAppUrl() {

@@ -1,0 +1,342 @@
+/**
+ * RODAPÉ INSTITUCIONAL (FOOTER) — ETAPA 07
+ * Dra. Mariana Lopes — Psicóloga Clínica
+ *
+ * Réplica fiel do mockup de referência:
+ * - Fundo verde-escuro sofisticado (#123E32).
+ * - Linha superior (Main):
+ *     - Esquerda: Logotipo botânico minimalista branco + Nome "Dra. Mariana Lopes" (Cormorant Garamond) + "PSICÓLOGA" (Inter, caixa alta).
+ *     - Centro: Lista horizontal de navegação (Home, Serviços, Reflexões, Quem Somos, FAQ, Contatos) em off-white.
+ *     - Direita: Botão cápsula com ícone do WhatsApp ("Fale no WhatsApp").
+ * - Divisória horizontal sutil em rgba(255, 255, 255, 0.12).
+ * - Linha inferior (Bottom):
+ *     - Esquerda: Copyright com ano dinâmico ("© 2025 Dra. Mariana Lopes. Todos os direitos reservados.").
+ *     - Direita: Frase institucional acolhedora ("Cuidar de você é o nosso maior propósito.").
+ * - Acessibilidade WCAG AA, foco visível, navegação fluida por teclado e responsividade mobile.
+ */
+
+/* ==========================================================================
+   1. Estrutura Geral do Rodapé
+   ========================================================================== */
+.footer {
+  background-color: var(--color-green);
+  color: var(--color-white);
+  position: relative;
+  width: 100%;
+}
+
+.footer__container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-desktop);
+}
+
+/* ==========================================================================
+   2. Linha Principal do Rodapé (Brand + Menu + CTA WhatsApp)
+   ========================================================================== */
+.footer__main {
+  padding: 2.25rem 0 2rem 0;
+}
+
+.footer__main-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* 2.1 Identidade Visual (Logotipo + Nome) */
+.footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  color: var(--color-white);
+  transition: opacity var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.footer__brand:hover {
+  opacity: 0.92;
+}
+
+.footer__brand:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.footer__brand-icon {
+  width: 26px;
+  height: 32px;
+  display: block;
+  flex-shrink: 0;
+  stroke: var(--color-white);
+}
+
+.footer__brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__brand-name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--color-white);
+  letter-spacing: -0.01em;
+}
+
+.footer__brand-role {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(250, 248, 242, 0.72);
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+
+/* 2.2 Menu de Navegação Horizontal */
+.footer__nav {
+  display: flex;
+  align-items: center;
+}
+
+.footer__menu {
+  display: flex;
+  align-items: center;
+  gap: 1.65rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__menu-link {
+  font-family: var(--font-body);
+  font-size: 0.815rem;
+  font-weight: 400;
+  color: rgba(250, 248, 242, 0.88);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  padding: 0.25rem 0;
+  display: inline-block;
+}
+
+.footer__menu-link:hover {
+  color: var(--color-white);
+}
+
+.footer__menu-link:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 2.3 Botão Cápsula do WhatsApp */
+.footer__actions {
+  flex-shrink: 0;
+}
+
+.footer__whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.25rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 9999px;
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 0.785rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+              border-color var(--transition-fast),
+              transform var(--transition-fast);
+}
+
+.footer__whatsapp-btn:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-1px);
+}
+
+.footer__whatsapp-btn:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 3px;
+}
+
+.footer__whatsapp-icon {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   3. Linha Inferior do Rodapé (Copyright + Frase Institucional)
+   ========================================================================== */
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1.15rem 0 1.35rem 0;
+}
+
+.footer__bottom-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.footer__copyright {
+  font-family: var(--font-body);
+  font-size: 0.725rem;
+  font-weight: 400;
+  color: rgba(250, 248, 242, 0.7);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.footer__tagline {
+  font-family: var(--font-body);
+  font-size: 0.725rem;
+  font-weight: 400;
+  color: rgba(250, 248, 242, 0.7);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   4. Responsividade e Adaptação a Telas
+   ========================================================================== */
+
+/* Telas Tablet e Desktop Compacto (768px a 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .footer__container {
+    padding: 0 var(--container-padding-tablet);
+  }
+
+  .footer__main-container {
+    gap: 1.25rem;
+  }
+
+  .footer__menu {
+    gap: 1.15rem;
+  }
+
+  .footer__menu-link {
+    font-size: 0.785rem;
+  }
+
+  .footer__whatsapp-btn {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.765rem;
+  }
+}
+
+/* Telas Tablet Intermediárias (768px a 880px) */
+@media (max-width: 880px) and (min-width: 768px) {
+  .footer__main-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .footer__nav {
+    order: 3;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .footer__menu {
+    gap: 1.25rem;
+    justify-content: flex-start;
+  }
+}
+
+/* Telas Móveis / Mobile (Abaixo de 768px) */
+@media (max-width: 767px) {
+  .footer__container {
+    padding: 0 var(--container-padding-mobile);
+  }
+
+  .footer__main {
+    padding: 2.5rem 0 2rem 0;
+  }
+
+  .footer__main-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.75rem;
+  }
+
+  .footer__brand {
+    justify-content: center;
+  }
+
+  .footer__nav {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer__menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem 1.35rem;
+  }
+
+  .footer__menu-link {
+    font-size: 0.835rem;
+    padding: 0.35rem 0.25rem;
+  }
+
+  .footer__actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer__whatsapp-btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+    padding: 0.65rem 1.25rem;
+    font-size: 0.825rem;
+  }
+
+  .footer__bottom {
+    padding: 1.35rem 0 1.75rem 0;
+  }
+
+  .footer__bottom-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.65rem;
+  }
+
+  .footer__copyright {
+    font-size: 0.735rem;
+  }
+
+  .footer__tagline {
+    font-size: 0.735rem;
+  }
+}
+
+/* Telas Muito Estreitas (360px a 390px) */
+@media (max-width: 390px) {
+  .footer__container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .footer__menu {
+    gap: 0.75rem 1rem;
+  }
+}
+
