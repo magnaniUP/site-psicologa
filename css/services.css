@@ -280,10 +280,11 @@
     display: none;
   }
 
-  /* Grade em coluna única no mobile para legibilidade perfeita */
+  /* Grade em 2 colunas (2x2) no mobile para melhor distribuição visual */
   .services__grid {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.85rem 1.25rem;
+    align-items: start;
   }
 
   .services__item {
@@ -294,19 +295,26 @@
     display: none;
   }
 
+  .services__icon-wrapper {
+    margin-bottom: 0.65rem;
+  }
+
   .services__icon {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
 
   .services__item-title {
-    font-size: 0.95rem;
-    margin-bottom: 0.3rem;
+    font-size: clamp(0.85rem, 3.8vw, 0.935rem);
+    line-height: 1.28;
+    margin-bottom: 0.35rem;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   .services__item-desc {
-    font-size: 0.825rem;
-    line-height: 1.5;
+    font-size: clamp(0.74rem, 3.1vw, 0.8rem);
+    line-height: 1.48;
   }
 }
 
@@ -322,7 +330,26 @@
   }
 
   .services__grid {
-    gap: 1.5rem;
+    gap: 1.5rem 0.85rem;
+  }
+
+  .services__icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .services__icon-wrapper {
+    margin-bottom: 0.5rem;
+  }
+
+  .services__item-title {
+    font-size: 0.835rem;
+    line-height: 1.25;
+  }
+
+  .services__item-desc {
+    font-size: 0.735rem;
+    line-height: 1.42;
   }
 }
 

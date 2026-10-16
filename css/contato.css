@@ -1,0 +1,331 @@
+/**
+ * SEÇÃO DE CONTATO — BANNER HORIZONTAL DE CONVITE & ATENDIMENTO
+ * Dra. Mariana Lopes — Psicóloga Clínica
+ *
+ * Inspirado no modelo de banner horizontal de ação com:
+ * - Lado Esquerdo: Traço indicador terracota + Eyebrow ("VAMOS CONVERSAR") +
+ *   Título H2 serifado em Cormorant Garamond ("Vamos dar o primeiro passo?") +
+ *   Texto explicativo acolhedor em Inter.
+ * - Lado Direito: Botão primário cápsula em verde-escuro ("Fale pelo WhatsApp") +
+ *   Linhas informativas com ícones sutis (horário agendado e modalidades presencial/online) +
+ *   Frase complementar de acolhimento.
+ * - Design System oficial:
+ *     Fundo creme claro (#FAF8F2), Cartão em tom bege quente (#FAF4ED),
+ *     Bordas sutis (#E7E2D9), Azul-marinho (#091A38), Verde-escuro (#123E32),
+ *     Terracota (#8D2C18) e Azul-acinzentado (#34465B / #5A738E).
+ * - Acessibilidade WCAG AA completa e responsividade de 320px a 1920px.
+ */
+
+/* ==========================================================================
+   1. Estrutura Geral da Seção de Contato
+   ========================================================================== */
+.contact {
+  background-color: var(--color-background);
+  padding: 3.5rem 0 4.25rem 0;
+  position: relative;
+  width: 100%;
+}
+
+.contact__container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-desktop);
+}
+
+/* ==========================================================================
+   2. Cartão / Banner Horizontal de Ação
+   ========================================================================== */
+.contact__banner {
+  background-color: #FAF4ED;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 2.5rem 2.75rem;
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  align-items: center;
+  gap: 2.75rem;
+  box-shadow: 0 2px 8px rgba(9, 26, 56, 0.03);
+  position: relative;
+}
+
+/* ==========================================================================
+   3. Coluna Esquerda: Mensagem e Apresentação
+   ========================================================================== */
+.contact__content-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Rótulo Superior com Traço Indicador */
+.contact__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-green);
+  margin: 0 0 0.65rem 0;
+  line-height: 1.3;
+}
+
+/* Traço Indicador no estilo do modelo de referência */
+.contact__eyebrow-dash {
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  background-color: var(--color-terracotta);
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+/* Título Principal (H2) em Cormorant Garamond */
+.contact__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 2.3vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1.22;
+  color: var(--color-navy);
+  letter-spacing: -0.01em;
+  margin: 0 0 0.85rem 0;
+}
+
+/* Texto Introdutório Acolhedor */
+.contact__description {
+  font-family: var(--font-body);
+  font-size: 0.865rem;
+  font-weight: 400;
+  line-height: 1.62;
+  color: var(--color-text);
+  margin: 0;
+  max-width: 490px;
+}
+
+/* ==========================================================================
+   4. Coluna Direita: Botão de Ação & Detalhes de Contato
+   ========================================================================== */
+.contact__action-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.15rem;
+  width: 100%;
+}
+
+/* Botão Cápsula Verde WhatsApp */
+.contact__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 0.885rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  padding: 0.75rem 1.85rem;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(18, 62, 50, 0.18);
+  transition: background-color var(--transition-fast), 
+              transform var(--transition-fast), 
+              box-shadow var(--transition-fast);
+  white-space: nowrap;
+}
+
+.contact__btn:hover {
+  background-color: var(--color-green-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(18, 62, 50, 0.26);
+}
+
+.contact__btn:active {
+  transform: translateY(0);
+}
+
+.contact__btn:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.contact__btn-icon {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* Bloco dos Itens Informativos com Ícones */
+.contact__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.contact__detail-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.815rem;
+  line-height: 1.4;
+}
+
+/* Envoltório do Ícone */
+.contact__detail-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-terracotta);
+}
+
+.contact__detail-icon {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+}
+
+.contact__detail-text {
+  color: var(--color-navy);
+  font-weight: 500;
+}
+
+/* Frase Complementar de Acolhimento */
+.contact__complementary {
+  font-family: var(--font-body);
+  font-size: 0.775rem;
+  font-weight: 400;
+  color: #5A738E;
+  margin: 0;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+
+/* ==========================================================================
+   5. Responsividade e Adaptação a Telas
+   ========================================================================== */
+
+/* Telas Tablet e Telas Intermediárias (768px a 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .contact {
+    padding: 3rem 0 3.5rem 0;
+  }
+
+  .contact__container {
+    padding: 0 var(--container-padding-tablet);
+  }
+
+  .contact__banner {
+    padding: 2.25rem 2rem;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+  }
+
+  .contact__title {
+    font-size: 1.85rem;
+  }
+
+  .contact__description {
+    font-size: 0.835rem;
+  }
+
+  .contact__btn {
+    padding: 0.7rem 1.6rem;
+    font-size: 0.845rem;
+  }
+
+  .contact__detail-item {
+    font-size: 0.785rem;
+  }
+}
+
+/* Telas Móveis / Mobile (Abaixo de 768px) */
+@media (max-width: 767px) {
+  .contact {
+    padding: 2.5rem 0 3rem 0;
+  }
+
+  .contact__container {
+    padding: 0 var(--container-padding-mobile);
+  }
+
+  /* Reorganização em coluna única (empilhada) */
+  .contact__banner {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.5rem;
+    gap: 1.75rem;
+    text-align: left;
+  }
+
+  .contact__eyebrow {
+    font-size: 0.685rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact__title {
+    font-size: clamp(1.5rem, 5.8vw, 1.85rem);
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+  }
+
+  .contact__description {
+    font-size: 0.845rem;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  .contact__action-col {
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding-top: 0.25rem;
+    border-top: 1px solid rgba(231, 226, 217, 0.75);
+  }
+
+  .contact__btn {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.75rem 1.35rem;
+    font-size: 0.845rem;
+  }
+
+  .contact__details {
+    gap: 0.65rem;
+  }
+
+  .contact__detail-item {
+    font-size: 0.815rem;
+  }
+
+  .contact__complementary {
+    font-size: 0.765rem;
+    max-width: 320px;
+  }
+}
+
+/* Telas Muito Estreitas (360px a 390px) */
+@media (max-width: 390px) {
+  .contact__container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .contact__banner {
+    padding: 1.75rem 1.15rem;
+    gap: 1.5rem;
+  }
+
+  .contact__btn {
+    max-width: 100%;
+  }
+}

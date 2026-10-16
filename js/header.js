@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 6. Inicialização do Menu Responsivo (Mobile Drawer)
   initMobileNavigation();
+
+  // 7. Inicialização dos Pop-ups de Reflexão Acolhedora
+  initReflectionModals();
 });
 
 /**
@@ -33,7 +36,8 @@ function initFaqAccordion() {
   const triggers = document.querySelectorAll(".faq__trigger");
   if (triggers.length === 0) return;
 
-  triggers.forEach((trigger) => {
+  triggers.forEach((trigger, index) => {
+    // Alterna abertura e fechamento ao clicar ou pressionar Enter/Espaço
     trigger.addEventListener("click", () => {
       const isExpanded = trigger.getAttribute("aria-expanded") === "true";
       const targetId = trigger.getAttribute("aria-controls");
@@ -65,6 +69,26 @@ function initFaqAccordion() {
           targetPanel.removeAttribute("hidden");
           targetPanel.setAttribute("aria-hidden", "false");
         }
+      }
+    });
+
+    // Navegação acessível por teclado com setas Cima/Baixo, Home e End (WAI-ARIA APG)
+    trigger.addEventListener("keydown", (e) => {
+      const triggerList = Array.from(triggers);
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const nextIndex = (index + 1) % triggerList.length;
+        triggerList[nextIndex].focus();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        const prevIndex = (index - 1 + triggerList.length) % triggerList.length;
+        triggerList[prevIndex].focus();
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        triggerList[0].focus();
+      } else if (e.key === "End") {
+        e.preventDefault();
+        triggerList[triggerList.length - 1].focus();
       }
     });
   });
@@ -277,4 +301,145 @@ function initMobileNavigation() {
     }
   });
 }
+
+/**
+ * Gerencia os Pop-ups Acolhedores para cada Card de Reflexões
+ */
+function initReflectionModals() {
+  const cards = document.querySelectorAll(".reflection-card[data-reflection-id]");
+  const modal = document.getElementById("reflection-modal");
+  if (!modal || cards.length === 0) return;
+
+  const titleEl = document.getElementById("reflection-modal-title");
+  const taglineEl = document.getElementById("reflection-modal-tagline");
+  const bodyEl = document.getElementById("reflection-modal-body");
+  const closeBtns = modal.querySelectorAll("[data-close-modal]");
+  const whatsappBtn = modal.querySelector(".reflection-modal__btn");
+  let lastActiveElement = null;
+
+  // Conteúdos acolhedores e éticos para cada tema
+  const reflectionsData = {
+    autoconhecimento: {
+      title: "Autoconhecimento",
+      tagline: "O primeiro passo para uma vida mais consciente.",
+      waMessage: "Olá, Dra. Mariana! Gostaria de conversar sobre autoconhecimento e atendimento psicológico.",
+      html: `
+        <p>Muitas vezes vivemos no piloto automático, respondendo às exigências do cotidiano sem tempo para perceber como realmente nos sentimos. O autoconhecimento é o processo de desacelerar e olhar para dentro com curiosidade e gentileza, sem julgamentos precipitados.</p>
+        <p>Ao reconhecer seus padrões de comportamento, suas reais necessidades e suas fontes de estresse, você conquista mais clareza para fazer escolhas autênticas e alinhadas aos seus valores fundamentais.</p>
+        <div class="reflection-modal__prompt">
+          <strong>Para refletir:</strong> Quando foi a última vez que você pausou e perguntou a si mesmo(a): <em>“O que eu realmente estou precisando neste momento?”</em>
+        </div>
+      `
+    },
+    autoestima: {
+      title: "Autoestima e acolhimento",
+      tagline: "Reconheça o seu valor e cuide de você.",
+      waMessage: "Olá, Dra. Mariana! Gostaria de conversar sobre autoestima, acolhimento e agendar uma consulta.",
+      html: `
+        <p>A autocrítica severa e o sentimento de insuficiência são dores comuns que carregamos em silêncio. Construir uma boa autoestima não significa se sentir seguro(a) ou infalível o tempo todo, mas aprender a ser um bom lugar para si mesmo(a), inclusive nos dias difíceis.</p>
+        <p>Acolher as próprias vulnerabilidades com compaixão é tão importante quanto reconhecer suas forças. A psicoterapia oferece um espaço protegido para desatar nós de autocobrança e reconstruir a relação consigo.</p>
+        <div class="reflection-modal__prompt">
+          <strong>Para refletir:</strong> Você falaria com alguém que ama da mesma maneira exigente como fala consigo mesmo(a) em seus momentos de erro?
+        </div>
+      `
+    },
+    relacoes: {
+      title: "Emoções e relações",
+      tagline: "Construindo vínculos mais saudáveis.",
+      waMessage: "Olá, Dra. Mariana! Gostaria de conversar sobre relações, emoções e atendimento psicológico.",
+      html: `
+        <p>A qualidade das nossas relações impacta profundamente nossa saúde emocional. Muitas vezes evitamos expressar o que sentimos por medo do conflito, do abandono ou da rejeição, acumulando mágoas e sobrecarga.</p>
+        <p>Aprender a comunicar sentimentos de forma honesta, respeitar os limites do outro e, sobretudo, sustentar os seus próprios limites é a base para vínculos genuínos, seguros e duradouros.</p>
+        <div class="reflection-modal__prompt">
+          <strong>Para refletir:</strong> Para que você precisa dizer “não” hoje para conseguir dizer um “sim” sincero à sua própria paz de espírito?
+        </div>
+      `
+    }
+  };
+
+  function openModal(id, triggerElement) {
+    const data = reflectionsData[id];
+    if (!data) return;
+
+    lastActiveElement = triggerElement;
+    titleEl.textContent = data.title;
+    taglineEl.textContent = data.tagline;
+    bodyEl.innerHTML = data.html;
+
+    // Atualiza link de WhatsApp customizado para o tema
+    if (whatsappBtn && typeof window.SITE_CONFIG !== "undefined") {
+      const phone = window.SITE_CONFIG.whatsapp?.phoneNumber || "5511999999999";
+      const encodedMsg = encodeURIComponent(data.waMessage);
+      whatsappBtn.href = `https://wa.me/${phone}?text=${encodedMsg}`;
+    }
+
+    modal.removeAttribute("hidden");
+    document.body.style.overflow = "hidden";
+
+    // Foco inicial acessível no botão fechar
+    const closeBtn = modal.querySelector(".reflection-modal__close");
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal() {
+    if (modal.hasAttribute("hidden")) return;
+    modal.setAttribute("hidden", "");
+    document.body.style.overflow = "";
+
+    // Restaura o foco para o card que disparou o modal
+    if (lastActiveElement && typeof lastActiveElement.focus === "function") {
+      lastActiveElement.focus();
+    }
+  }
+
+  // Eventos de clique e teclado nos cards
+  cards.forEach((card) => {
+    const reflectionId = card.getAttribute("data-reflection-id");
+    if (!reflectionId) return;
+
+    card.addEventListener("click", () => openModal(reflectionId, card));
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openModal(reflectionId, card);
+      }
+    });
+  });
+
+  // Fechamento pelo botão X ou clique no backdrop
+  closeBtns.forEach((btn) => {
+    btn.addEventListener("click", closeModal);
+  });
+
+  // Fechamento pela tecla Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.hasAttribute("hidden")) {
+      closeModal();
+    }
+  });
+
+  // Trap de foco acessível dentro do diálogo aberto
+  modal.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab" || modal.hasAttribute("hidden")) return;
+
+    const focusable = Array.from(modal.querySelectorAll('a[href], button:not([disabled])'));
+    if (focusable.length === 0) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+}
+
 

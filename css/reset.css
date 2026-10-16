@@ -58,6 +58,11 @@ svg {
   outline-offset: var(--focus-ring-offset);
 }
 
+/* Enforce HTML5 hidden attribute behavior */
+[hidden] {
+  display: none !important;
+}
+
 /* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

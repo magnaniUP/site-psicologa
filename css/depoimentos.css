@@ -23,7 +23,7 @@
    1. Estrutura Geral da Seção de Depoimentos
    ========================================================================== */
 .testimonials {
-  background-color: var(--color-background);
+  background-color: var(--color-white);
   padding: 3.75rem 0 4.25rem 0;
   position: relative;
   width: 100%;
@@ -271,17 +271,17 @@
     line-height: 1.25;
   }
 
-  /* Carrossel fluido com CSS Scroll Snap no mobile */
+  /* Carrossel fluido perfeitamente centralizado no container */
   .testimonials__track {
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.5rem;
     scrollbar-width: none; /* Oculta barra de rolagem no Firefox */
-    margin: 0 calc(-1 * var(--container-padding-mobile));
-    padding: 0 var(--container-padding-mobile) 0.5rem var(--container-padding-mobile);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 0 0.5rem 0;
   }
 
   .testimonials__track::-webkit-scrollbar {
@@ -290,16 +290,23 @@
 
   .testimonials__list {
     display: flex;
-    gap: 1rem;
-    width: max-content;
+    gap: 1.25rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   .testimonial-card {
-    width: calc(100vw - 2.5rem);
-    max-width: 380px;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
     scroll-snap-align: center;
+    scroll-snap-stop: always;
     flex-shrink: 0;
-    padding: 1.5rem 1.35rem;
+    box-sizing: border-box;
+    padding: 1.65rem 1.45rem;
+    margin: 0;
   }
 
   .testimonial-card__text {
@@ -320,13 +327,15 @@
   }
 
   .testimonials__track {
-    margin: 0 -1rem;
-    padding: 0 1rem 0.5rem 1rem;
+    margin: 0 auto;
+    padding: 0 0 0.5rem 0;
   }
 
   .testimonial-card {
-    width: calc(100vw - 2rem);
-    padding: 1.35rem 1.15rem;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 1.4rem 1.2rem;
   }
 
   .testimonial-card__text {

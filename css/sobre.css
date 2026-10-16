@@ -17,7 +17,7 @@
    1. Estrutura Geral da Seção Sobre Mim
    ========================================================================== */
 .about {
-  background-color: var(--color-background);
+  background-color: var(--color-white);
   padding: 3.75rem 0 4.25rem 0;
   position: relative;
   width: 100%;
@@ -223,7 +223,7 @@
   stroke-width: 1.5;
   fill: none;
   stroke-linecap: round;
-  stroke-linejoin="round";
+  stroke-linejoin: round;
 }
 
 /* Cores específicas dos ícones conforme mockup */
