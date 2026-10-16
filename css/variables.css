@@ -1,0 +1,46 @@
+/**
+ * DESIGN SYSTEM & CSS TOKENS
+ * Dra. Mariana Lopes — Psicóloga Clínica
+ * Etapa 01: Identidade Visual e Header
+ */
+
+:root {
+  /* Cores Principais Extraídas do Mockup */
+  --color-background: #FAF8F2;       /* Fundo principal branco quente/creme */
+  --color-navy: #091A38;             /* Azul-marinho profundo (nome e links) */
+  --color-navy-hover: #162F5E;       /* Variação interativa do azul-marinho */
+  --color-green: #123E32;            /* Verde-escuro sofisticado (botão WhatsApp) */
+  --color-green-hover: #1B5545;      /* Verde-escuro hover */
+  --color-terracotta: #8D2C18;       /* Terracota elegante (símbolo e especialidade) */
+  --color-terracotta-hover: #A6351E; /* Terracota hover */
+  --color-text: #34465B;             /* Cor secundária do texto */
+  --color-border: #E7E2D9;           /* Linha divisória sutil */
+  --color-white: #FFFFFF;            /* Branco puro */
+
+  /* Tipografia */
+  --font-heading: 'Cormorant Garamond', 'Lora', 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-cursive: 'Caveat', cursive, -apple-system, sans-serif;
+
+  /* Dimensões e Layout */
+  --header-height: 66px;             /* Altura desktop da referência (~66px) */
+  --header-height-mobile: 60px;      /* Altura compacta em telas móveis */
+  --container-max-width: 1440px;     /* Largura máxima do conteúdo */
+  --container-padding-desktop: 8.7%; /* Margens laterais desktop (~8.7%) */
+  --container-padding-tablet: 5%;    /* Margens laterais tablet */
+  --container-padding-mobile: 1.25rem; /* Margens laterais mobile (20px) */
+
+  /* Transições e Animações */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Sombras Sutis */
+  --shadow-subtle: 0 1px 3px rgba(9, 26, 56, 0.04);
+  --shadow-dropdown: 0 8px 24px rgba(9, 26, 56, 0.08);
+
+  /* Estados de Acessibilidade */
+  --focus-ring: 2px solid var(--color-terracotta);
+  --focus-ring-offset: 3px;
+}
+

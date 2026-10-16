@@ -1,0 +1,393 @@
+/**
+ * HERO SECTION / PRIMEIRA DOBRA — ETAPA 02
+ * Dra. Mariana Lopes — Psicóloga Clínica
+ *
+ * Réplica fiel do mockup de referência:
+ * - Divisão proporcional: ~47.4% área de texto (fundo creme) / ~52.6% imagem do consultório.
+ * - Alinhamento lateral com o header: conteúdo textual inicia a ~8.7% da largura.
+ * - Altura aproximada desktop: ~330px a 360px.
+ * - Transição direta entre texto e fotografia (sem margens artificiais).
+ * - Citação manuscrita flutuante ("Você não precisa passar por isso sozinha(o).")
+ *   em HTML real sobreposta à fotografia com alto contraste e legibilidade.
+ * - Botão WhatsApp em cápsula verde-escuro + link secundário em terracota com seta.
+ * - Responsividade fluida: Desktop (1024px+), Tablet (768px-1023px) e Mobile (<=767px).
+ */
+
+/* ==========================================================================
+   1. Estrutura Geral da Hero Section
+   ========================================================================== */
+.hero {
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Grid de 3 colunas no desktop:
+   Coluna 1: 8.7% (margem esquerda, alinhando com o logotipo do header)
+   Coluna 2: 1fr (área de texto até 47.4% da largura total)
+   Coluna 3: 52.6% (área da imagem fotográfica do consultório)
+*/
+.hero__container {
+  display: grid;
+  grid-template-columns: var(--container-padding-desktop) minmax(0, 1fr) 52.6%;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  min-height: 334px;
+  align-items: stretch;
+}
+
+/* ==========================================================================
+   2. Área Esquerda: Conteúdo Textual
+   ========================================================================== */
+.hero__content {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 2.75rem;
+  padding-bottom: 2.75rem;
+  padding-right: 2.25rem;
+  z-index: 2;
+}
+
+/* 2.1 Texto Introdutório / Eyebrow */
+.hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #43524B;
+  margin: 0 0 0.85rem 0;
+  line-height: 1.3;
+}
+
+/* 2.2 Título Principal (H1) */
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 2.35vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1.22;
+  color: var(--color-navy);
+  letter-spacing: -0.01em;
+  margin: 0 0 1rem 0;
+}
+
+.hero__title-br {
+  display: inline;
+}
+
+/* 2.3 Descrição de Apoio */
+.hero__description {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text);
+  max-width: 44ch;
+  margin: 0 0 1.75rem 0;
+}
+
+/* 2.4 Grupo de Ações (CTA) */
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Botão Primário: WhatsApp em formato Cápsula Verde */
+.hero__btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 0.835rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.65rem 1.35rem;
+  border-radius: 9999px;
+  box-shadow: 0 2px 6px rgba(18, 62, 50, 0.15);
+  transition: background-color var(--transition-fast), 
+              transform var(--transition-fast), 
+              box-shadow var(--transition-fast);
+  white-space: nowrap;
+}
+
+.hero__btn-primary:hover {
+  background-color: var(--color-green-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(18, 62, 50, 0.22);
+}
+
+.hero__btn-primary:active {
+  transform: translateY(0);
+}
+
+.hero__btn-primary:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.hero__btn-icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* Link Secundário: "Conheça meu trabalho →" em Terracota */
+.hero__link-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-terracotta);
+  font-family: var(--font-body);
+  font-size: 0.845rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-fast), 
+              transform var(--transition-fast);
+  padding: 0.25rem 0;
+  white-space: nowrap;
+}
+
+.hero__link-secondary:hover {
+  color: var(--color-terracotta-hover);
+}
+
+.hero__arrow-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.hero__link-secondary:hover .hero__arrow-icon {
+  transform: translateX(3px);
+}
+
+.hero__link-secondary:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* ==========================================================================
+   3. Área Direita: Fotografia do Consultório e Frase Flutuante
+   ========================================================================== */
+.hero__visual {
+  grid-column: 3;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 334px;
+  overflow: hidden;
+  background-color: #E8E2D7; /* Cor base neutra durante o carregamento */
+}
+
+/* Fotografia principal */
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+/* Frase de Acolhimento sobreposta à imagem (Réplica fiel da posição e do estilo do mockup) */
+.hero__quote-box {
+  position: absolute;
+  top: 18.5%;
+  right: 0;
+  width: 39.5%;
+  height: 38%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0.75rem 1.25rem 0.75rem 1.75rem;
+  z-index: 3;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero__quote-text {
+  font-family: var(--font-cursive);
+  font-size: clamp(1.25rem, 1.7vw, 1.55rem);
+  line-height: 1.26;
+  font-weight: 500;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+}
+
+/* ==========================================================================
+   4. Responsividade e Adaptação a Telas
+   ========================================================================== */
+
+/* Telas Ultrawide / Desktop Grande (acima de 1280px) */
+@media (min-width: 1280px) {
+  .hero__container {
+    min-height: 360px;
+  }
+  .hero__visual {
+    min-height: 360px;
+  }
+  .hero__title {
+    font-size: 2.15rem;
+  }
+}
+
+/* Telas Tablet / Desktop Compacto (768px a 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .hero__container {
+    grid-template-columns: var(--container-padding-tablet) minmax(0, 1.08fr) 1fr;
+    min-height: 310px;
+  }
+
+  .hero__content {
+    padding-top: 2.25rem;
+    padding-bottom: 2.25rem;
+    padding-right: 1.5rem;
+  }
+
+  .hero__title {
+    font-size: 1.75rem;
+    line-height: 1.25;
+  }
+
+  .hero__description {
+    font-size: 0.835rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .hero__visual {
+    min-height: 310px;
+  }
+
+  .hero__quote-box {
+    top: 18.5%;
+    right: 0;
+    width: 44%;
+    height: 40%;
+    padding: 0.5rem 1rem;
+  }
+
+  .hero__quote-text {
+    font-size: 1.15rem;
+    line-height: 1.25;
+  }
+}
+
+/* Telas Móveis / Mobile (Abaixo de 768px) */
+@media (max-width: 767px) {
+  .hero__container {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .hero__content {
+    grid-column: auto;
+    padding: 2.25rem var(--container-padding-mobile) 2rem;
+  }
+
+  .hero__eyebrow {
+    font-size: 0.685rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .hero__title {
+    font-size: clamp(1.55rem, 6.2vw, 1.85rem);
+    line-height: 1.25;
+    margin-bottom: 0.85rem;
+  }
+
+  .hero__title-br {
+    display: none; /* Quebra natural fluida no mobile para evitar linhas desproporcionais */
+  }
+
+  .hero__description {
+    font-size: 0.845rem;
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+  }
+
+  .hero__btn-primary {
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .hero__link-secondary {
+    align-self: center;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.845rem;
+  }
+
+  /* Fotografia com altura proporcional controlada no mobile */
+  .hero__visual {
+    grid-column: auto;
+    width: 100%;
+    height: 250px;
+    min-height: 250px;
+  }
+
+  .hero__image {
+    object-position: center 30%;
+  }
+
+  .hero__quote-box {
+    top: 18%;
+    right: 0;
+    width: 46%;
+    height: 48%;
+    padding: 0.5rem 0.85rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero__quote-text {
+    font-size: 1.12rem;
+    line-height: 1.22;
+  }
+}
+
+/* Telas Muito Estreitas (360px a 390px) */
+@media (max-width: 390px) {
+  .hero__content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero__visual {
+    height: 230px;
+    min-height: 230px;
+  }
+
+  .hero__quote-box {
+    width: 50%;
+    padding: 0.4rem 0.65rem;
+  }
+
+  .hero__quote-text {
+    font-size: 1rem;
+  }
+}
+

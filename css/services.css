@@ -1,0 +1,328 @@
+/**
+ * SEÇÃO DE SERVIÇOS — ETAPA 03
+ * Dra. Mariana Lopes — Psicóloga Clínica
+ *
+ * Réplica fiel do mockup de referência:
+ * - Fundo creme suave (#FAF8F2).
+ * - Container com margem lateral alinhada ao header (~8.7% / 9%).
+ * - Cabeçalho da seção dividido em duas áreas:
+ *     - Esquerda: Eyebrow em verde-escuro e Título H2 em Cormorant Garamond.
+ *     - Direita: Texto complementar explicativo em Inter azul-acinzentado.
+ * - Grade horizontal com 4 colunas de serviços:
+ *     1. Autoconhecimento (ícone linear pessoa/identidade)
+ *     2. Ansiedade e emoções (ícone linear grupo de pessoas)
+ *     3. Autoestima e culpa (ícone linear cérebro estilizado)
+ *     4. Relações e limites (ícone linear coração em contorno)
+ * - Divisórias verticais sutis entre as colunas.
+ * - Ícones minimalistas em Terracota escuro (#8D2C18).
+ * - Design limpo: sem cartões, sem fundos independentes, sem sombras artificiais.
+ * - Responsividade fluida: Desktop (4 colunas), Tablet (2 colunas) e Mobile (1 coluna).
+ */
+
+/* ==========================================================================
+   1. Estrutura Geral da Seção de Serviços
+   ========================================================================== */
+.services {
+  background-color: var(--color-background);
+  padding: 3.5rem 0 3.75rem 0;
+  position: relative;
+  width: 100%;
+}
+
+.services__container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-desktop);
+}
+
+/* ==========================================================================
+   2. Cabeçalho da Seção (Duas Áreas: Título à Esquerda + Descrição à Direita)
+   ========================================================================== */
+.services__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 2.75rem;
+}
+
+/* Área Esquerda: Eyebrow e H2 */
+.services__header-main {
+  flex: 1 1 auto;
+  max-width: 520px;
+}
+
+/* Rótulo Introdutório */
+.services__eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-green);
+  margin: 0 0 0.65rem 0;
+  line-height: 1.3;
+}
+
+/* Título Principal da Seção (H2) */
+.services__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 2.2vw, 1.95rem);
+  font-weight: 500;
+  line-height: 1.22;
+  color: var(--color-navy);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.services__title-br {
+  display: inline;
+}
+
+/* Área Direita: Descrição Complementar */
+.services__header-desc {
+  flex: 0 1 380px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.services__description {
+  font-family: var(--font-body);
+  font-size: 0.835rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.services__desc-br {
+  display: inline;
+}
+
+/* ==========================================================================
+   3. Grade dos Quatro Serviços (Lista Semântica)
+   ========================================================================== */
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Coluna Individual de Serviço */
+.services__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.75rem;
+  transition: transform var(--transition-fast);
+}
+
+.services__item:first-child {
+  padding-left: 0;
+}
+
+.services__item:last-child {
+  padding-right: 0;
+}
+
+/* Divisórias Verticais Sutis entre as Colunas */
+.services__item:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 1px;
+  background-color: var(--color-border);
+}
+
+/* 3.1 Ícone Linear */
+.services__icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0.85rem;
+  color: var(--color-terracotta);
+}
+
+.services__icon {
+  width: 30px;
+  height: 30px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  flex-shrink: 0;
+}
+
+/* 3.2 Título do Serviço (H3) */
+.services__item-title {
+  font-family: var(--font-body);
+  font-size: 0.935rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-navy);
+  margin: 0 0 0.4rem 0;
+  letter-spacing: -0.005em;
+}
+
+/* 3.3 Descrição do Serviço */
+.services__item-desc {
+  font-family: var(--font-body);
+  font-size: 0.785rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* ==========================================================================
+   4. Responsividade e Adaptação a Telas
+   ========================================================================== */
+
+/* Telas Tablet / Desktop Compacto (768px a 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .services {
+    padding: 3rem 0;
+  }
+
+  .services__container {
+    padding: 0 var(--container-padding-tablet);
+  }
+
+  .services__header {
+    gap: 1.5rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .services__title {
+    font-size: 1.65rem;
+  }
+
+  .services__description {
+    font-size: 0.815rem;
+  }
+
+  /* Reorganiza em grade 2x2 no Tablet para conforto de leitura */
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.25rem 2rem;
+  }
+
+  .services__item {
+    padding: 0;
+  }
+
+  /* Remove divisórias verticais absolutas da grade 4x1 */
+  .services__item:not(:first-child)::before {
+    display: none;
+  }
+
+  /* Adiciona divisória vertical sutil apenas entre as 2 colunas */
+  .services__item:nth-child(2n)::before {
+    display: block;
+    left: -1rem;
+    top: 0;
+    bottom: 0;
+  }
+}
+
+/* Telas Móveis / Mobile (Abaixo de 768px) */
+@media (max-width: 767px) {
+  .services {
+    padding: 2.75rem 0 3rem 0;
+  }
+
+  .services__container {
+    padding: 0 var(--container-padding-mobile);
+  }
+
+  /* Cabeçalho empilhado verticalmente */
+  .services__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .services__header-main {
+    max-width: 100%;
+  }
+
+  .services__header-desc {
+    flex: auto;
+    max-width: 100%;
+  }
+
+  .services__eyebrow {
+    font-size: 0.685rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .services__title {
+    font-size: clamp(1.45rem, 5.8vw, 1.7rem);
+    line-height: 1.25;
+  }
+
+  .services__title-br {
+    display: none;
+  }
+
+  .services__description {
+    font-size: 0.835rem;
+    line-height: 1.5;
+  }
+
+  .services__desc-br {
+    display: none;
+  }
+
+  /* Grade em coluna única no mobile para legibilidade perfeita */
+  .services__grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .services__item {
+    padding: 0;
+  }
+
+  .services__item:not(:first-child)::before {
+    display: none;
+  }
+
+  .services__icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .services__item-title {
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .services__item-desc {
+    font-size: 0.825rem;
+    line-height: 1.5;
+  }
+}
+
+/* Telas Muito Estreitas (360px a 390px) */
+@media (max-width: 390px) {
+  .services__container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .services__title {
+    font-size: 1.4rem;
+  }
+
+  .services__grid {
+    gap: 1.5rem;
+  }
+}
+

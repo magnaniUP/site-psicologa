@@ -1,0 +1,442 @@
+/**
+ * SEÇÃO SOBRE MIM — ETAPA 04
+ * Dra. Mariana Lopes — Psicóloga Clínica
+ *
+ * Réplica fiel do mockup de referência:
+ * - Fundo creme claro (#FAF8F2) integrado ao design system existente.
+ * - Container com margem lateral alinhada ao cabeçalho (~8.7% / 9%).
+ * - Composição em 3 áreas visuais no desktop:
+ *     1. Esquerda: Apresentação profissional (Rótulo, Psicóloga Clínica, CRP, texto e botão cápsula).
+ *     2. Centro: Fotografia da profissional em enquadramento acolhedor com cantos arredondados.
+ *     3. Direita: Painel informativo lateral com fundo creme acolhedor e 3 linhas com divisórias.
+ * - Ícones lineares minimalistas em verde-escuro (#123E32) e terracota (#8D2C18).
+ * - Acessibilidade WCAG AA, foco visível, sem layout shift e responsividade completa.
+ */
+
+/* ==========================================================================
+   1. Estrutura Geral da Seção Sobre Mim
+   ========================================================================== */
+.about {
+  background-color: var(--color-background);
+  padding: 3.75rem 0 4.25rem 0;
+  position: relative;
+  width: 100%;
+}
+
+.about__container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-desktop);
+}
+
+/* Grade de Três Colunas (Desktop) */
+.about__grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1.05fr 0.95fr;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+/* ==========================================================================
+   2. Área Esquerda: Apresentação Profissional
+   ========================================================================== */
+.about__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Rótulo Introdutório */
+.about__eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-green);
+  margin: 0 0 0.55rem 0;
+  line-height: 1.3;
+}
+
+/* Identificação Profissional (H2 para hierarquia semântica e SEO) */
+.about__title {
+  margin: 0 0 0.95rem 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.65rem 0.85rem;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.about__role {
+  font-family: var(--font-body);
+  font-size: 0.835rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+}
+
+.about__crp-tag {
+  font-family: var(--font-body);
+  font-size: 0.795rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-terracotta);
+  opacity: 0.9;
+}
+
+/* Texto de Apresentação */
+.about__text {
+  font-family: var(--font-body);
+  font-size: 0.865rem;
+  font-weight: 400;
+  line-height: 1.68;
+  color: var(--color-text);
+  margin: 0 0 1.5rem 0;
+  max-width: 440px;
+}
+
+/* Botão Secundário / Cápsula com Contorno Verde */
+.about__action {
+  margin-top: 0.25rem;
+}
+
+.about__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.3rem;
+  background-color: transparent;
+  color: var(--color-green);
+  border: 1.5px solid var(--color-green);
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-size: 0.795rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast),
+              border-color var(--transition-fast),
+              transform var(--transition-fast);
+}
+
+.about__cta-btn:hover {
+  background-color: rgba(18, 62, 50, 0.06);
+  color: var(--color-green-hover);
+  border-color: var(--color-green-hover);
+  transform: translateY(-1px);
+}
+
+.about__cta-btn:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.about__cta-icon {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  fill: none;
+  transition: transform var(--transition-fast);
+}
+
+.about__cta-btn:hover .about__cta-icon {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   3. Área Central: Fotografia da Psicóloga
+   ========================================================================== */
+.about__photo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.about__photo {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  aspect-ratio: 152 / 144;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 3px 12px rgba(9, 26, 56, 0.05);
+  display: block;
+}
+
+/* ==========================================================================
+   4. Área Direita: Painel Informativo Lateral
+   ========================================================================== */
+.about__card {
+  background-color: #FAF4ED;
+  border: 1px solid rgba(231, 226, 217, 0.85);
+  border-radius: 8px;
+  padding: 1.35rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Linha do Painel */
+.about__card-row {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  padding: 0.85rem 0;
+}
+
+.about__card-row:first-child {
+  padding-top: 0;
+}
+
+.about__card-row:last-child {
+  padding-bottom: 0;
+}
+
+/* Divisória Horizontal Sutil */
+.about__card-row:not(:last-child) {
+  border-bottom: 1px solid rgba(231, 226, 217, 0.85);
+}
+
+/* Envoltório do Ícone */
+.about__card-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.about__card-icon {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin="round";
+}
+
+/* Cores específicas dos ícones conforme mockup */
+.about__card-icon-wrap--green {
+  color: var(--color-green);
+}
+
+.about__card-icon-wrap--terracotta {
+  color: var(--color-terracotta);
+}
+
+/* Conteúdo Textual do Painel */
+.about__card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.about__card-title {
+  font-family: var(--font-body);
+  font-size: 0.855rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  line-height: 1.32;
+}
+
+.about__card-title-br {
+  display: inline;
+}
+
+.about__card-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.775rem;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.about__card-subtitle--crp {
+  color: var(--color-terracotta);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   5. Responsividade e Adaptação a Telas
+   ========================================================================== */
+
+/* Telas Tablet e Desktop Compacto (768px a 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .about {
+    padding: 3.25rem 0;
+  }
+
+  .about__container {
+    padding: 0 var(--container-padding-tablet);
+  }
+
+  .about__grid {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .about__text {
+    font-size: 0.84rem;
+    line-height: 1.62;
+  }
+
+  .about__card {
+    padding: 1.15rem 1.15rem;
+  }
+
+  .about__card-row {
+    padding: 0.75rem 0;
+    gap: 0.75rem;
+  }
+
+  .about__card-title {
+    font-size: 0.825rem;
+  }
+
+  .about__card-subtitle {
+    font-size: 0.75rem;
+  }
+}
+
+/* Telas Tablet Estreitas (768px a 880px) */
+@media (max-width: 880px) and (min-width: 768px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about__photo-wrapper {
+    order: 2;
+  }
+
+  .about__content {
+    order: 1;
+    max-width: 100%;
+  }
+
+  .about__card {
+    order: 3;
+    max-width: 100%;
+  }
+
+  .about__photo {
+    max-width: 320px;
+  }
+}
+
+/* Telas Móveis / Mobile (Abaixo de 768px) */
+@media (max-width: 767px) {
+  .about {
+    padding: 2.75rem 0 3.25rem 0;
+  }
+
+  .about__container {
+    padding: 0 var(--container-padding-mobile);
+  }
+
+  /* Empilhamento vertical estrito perfeitamente ordenado */
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about__content {
+    order: 1;
+    width: 100%;
+  }
+
+  .about__eyebrow {
+    font-size: 0.685rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .about__title {
+    margin-bottom: 0.85rem;
+  }
+
+  .about__role {
+    font-size: 0.815rem;
+  }
+
+  .about__crp-tag {
+    font-size: 0.775rem;
+  }
+
+  .about__text {
+    font-size: 0.845rem;
+    line-height: 1.65;
+    max-width: 100%;
+    margin-bottom: 1.35rem;
+  }
+
+  .about__action {
+    width: 100%;
+  }
+
+  .about__cta-btn {
+    width: 100%;
+    padding: 0.65rem 1.25rem;
+    font-size: 0.825rem;
+  }
+
+  .about__photo-wrapper {
+    order: 2;
+    width: 100%;
+  }
+
+  .about__photo {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .about__card {
+    order: 3;
+    width: 100%;
+    padding: 1.25rem 1.25rem;
+  }
+
+  .about__card-row {
+    padding: 0.85rem 0;
+    gap: 0.85rem;
+  }
+
+  .about__card-title {
+    font-size: 0.865rem;
+  }
+
+  .about__card-subtitle {
+    font-size: 0.795rem;
+  }
+}
+
+/* Telas Muito Estreitas (360px a 390px) */
+@media (max-width: 390px) {
+  .about__container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about__title {
+    gap: 0.4rem;
+  }
+
+  .about__card {
+    padding: 1.1rem 1rem;
+  }
+
+  .about__card-row {
+    gap: 0.75rem;
+  }
+}
+
